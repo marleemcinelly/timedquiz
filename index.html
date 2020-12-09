@@ -53,7 +53,19 @@
             <button type="button" class="btn btn-info" id="a4">Answer</button>
           </div>
         </div>
+
+        <form>
+          <div class="form-group">
+            <label for="initials" id="iniText">Enter your initials below!</label>
+            <input type="text" class="form-control" id="initials" placeholder="initials">
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit">Submit!</button>
+        </form>
+
       </div>
+
+    
+
     
 
 <script>
@@ -69,6 +81,7 @@
     var a2Btn = document.querySelector("#a2");
     var a3Btn = document.querySelector("#a3");
     var a4Btn = document.querySelector("#a4");
+    var submitBtn = document.querySelector("#submit");
 
     var interval;
     var timePool = 60;
@@ -114,6 +127,9 @@
       a2.style.visibility='hidden';
       a3.style.visibility='hidden';
       a4.style.visibility='hidden';
+      submit.style.visibility='hidden';
+      initials.style.visibility='hidden';
+      iniText.style.visibility='hidden';
     }
 
     hideButtons();
@@ -215,6 +231,9 @@
         a2.style.visibility='hidden';
         a3.style.visibility='hidden';
         a4.style.visibility='hidden';
+        submit.style.visibility='visible';
+        initials.style.visibility='visible';
+        iniText.style.visibility='visible';
         return;
       }
 
@@ -242,6 +261,21 @@
       questionControl();
     };
 
+    submitBtn.addEventListener("click", function(event) {
+      event.preventDefault();
+
+      var initials = document.querySelector("#initials").value;
+
+      if (initials === "") {
+        alert("Field cannot be blank!");
+      } else {
+        alert("Success!");
+      }
+
+      localStorage.setItem("initials", initials);
+
+      
+    })
     
     
   startButton.addEventListener("click", startQuiz);
